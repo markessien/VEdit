@@ -1,0 +1,116 @@
+// VEdit.idl : IDL source for VEdit.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (VEdit.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+#include "olectl.h"
+	
+	
+[
+	uuid(073B88D2-627E-4875-9972-892F0E594A3A),
+	version(1.0),
+	helpstring("VEdit Component")
+]
+library VEDITLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	typedef enum EnumMediaType
+	{
+		mediaVideo = 0,
+		mediaAudio = 1
+	} MediaType;
+
+	[
+		object,
+		uuid(5018DC49-9DF4-4C7A-855F-F9010D0A331F),
+		dual,
+		helpstring("IVEditObj3 Interface"),
+		pointer_default(unique)
+	]
+	interface IVEditObj3 : IDispatch
+	{
+		[propget, id(1), helpstring("property CurrentPos")] HRESULT CurrentPos([out, retval] double *pVal);
+		[propget, id(2), helpstring("property Duration")] HRESULT Duration([out, retval] double *pVal);
+		[id(3), helpstring("method CancelSave")] HRESULT CancelSave();
+		[id(4), helpstring("method GotoEnd")] HRESULT GotoEnd();
+		[id(5), helpstring("method GotoStart")] HRESULT GotoStart();
+		[id(6), helpstring("method Pause")] HRESULT Pause();
+		[id(7), helpstring("method Play")] HRESULT Play();
+		[id(8), helpstring("method SaveAsAVI")] HRESULT SaveAsAVI([in] BSTR FilePath, [in] VARIANT_BOOL Selection);
+		[id(9), helpstring("method SaveAsWMV")] HRESULT SaveAsWMV([in] BSTR FilePath, [in] VARIANT_BOOL Selection);
+		[id(10), helpstring("method SaveAsMPEG")] HRESULT SaveAsMPEG([in] BSTR FilePath, [in] VARIANT_BOOL Selection);
+		[id(11), helpstring("method Seek")] HRESULT Seek([in] double dPosition);
+		[id(12), helpstring("method Step")] HRESULT Step([in] long FrameCount);
+		[propget, id(13), helpstring("property AudioCodec")] HRESULT AudioCodec([out, retval] BSTR *pVal);
+		[propput, id(13), helpstring("property AudioCodec")] HRESULT AudioCodec([in] BSTR newVal);
+		[propget, id(14), helpstring("property FileName")] HRESULT FileName([out, retval] BSTR *pVal);
+		[propput, id(14), helpstring("property FileName")] HRESULT FileName([in] BSTR newVal);
+		[propget, id(15), helpstring("property Framerate")] HRESULT Framerate([out, retval] double *pVal);
+		[propput, id(15), helpstring("property Framerate")] HRESULT Framerate([in] double newVal);
+		[propget, id(16), helpstring("property FrameCount")] HRESULT FrameCount([out, retval] long *pVal);
+		[propget, id(17), helpstring("property HasAudio")] HRESULT HasAudio([out, retval] VARIANT_BOOL *pVal);
+		[propget, id(18), helpstring("property HasVideo")] HRESULT HasVideo([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(18), helpstring("property HasVideo")] HRESULT HasVideo([in] VARIANT_BOOL newVal);
+		[propget, id(19), helpstring("property Length")] HRESULT Length([out, retval] double *pVal);
+		[propput, id(19), helpstring("property Length")] HRESULT Length([in] double newVal);
+		[propget, id(20), helpstring("property VideoCodec")] HRESULT VideoCodec([out, retval] BSTR *pVal);
+		[propput, id(20), helpstring("property VideoCodec")] HRESULT VideoCodec([in] BSTR newVal);
+		[propget, id(21), helpstring("property VideoHeight")] HRESULT VideoHeight([out, retval] long *pVal);
+		[propput, id(21), helpstring("property VideoHeight")] HRESULT VideoHeight([in] long newVal);
+		[propget, id(22), helpstring("property VideoWidth")] HRESULT VideoWidth([out, retval] long *pVal);
+		[propput, id(22), helpstring("property VideoWidth")] HRESULT VideoWidth([in] long newVal);
+		[propget, id(23), helpstring("property WMVProfile")] HRESULT WMVProfile([out, retval] long *pVal);
+		[propput, id(23), helpstring("property WMVProfile")] HRESULT WMVProfile([in] long newVal);
+		[propget, id(24), helpstring("property Visible")] HRESULT Visible([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(24), helpstring("property Visible")] HRESULT Visible([in] VARIANT_BOOL newVal);
+		[id(25), helpstring("method PasteFile")] HRESULT PasteFile([in] BSTR FileName, [out] double * Duration);
+		[id(27), helpstring("method Stop")] HRESULT Stop();
+		[id(28), helpstring("method ListEffects")] HRESULT ListEffects();
+		[id(29), helpstring("method ListWMVProfiles")] HRESULT ListWMVProfiles();
+		[id(30), helpstring("method ListAVICodecs")] HRESULT ListAVICodecs([in] MediaType type);
+		[propget, id(31), helpstring("property VideoEffectGuid")] HRESULT VideoEffectGuid([out, retval] BSTR *pVal);
+		[propput, id(31), helpstring("property VideoEffectGuid")] HRESULT VideoEffectGuid([in] BSTR newVal);
+		[propget, id(32), helpstring("property HasVideoConfigureDialog")] HRESULT HasVideoConfigureDialog([in] BSTR CodecGuid, [out, retval] VARIANT_BOOL *pVal);
+		[propget, id(33), helpstring("property HasVideoAboutDialog")] HRESULT HasVideoAboutDialog([in] BSTR CodecGuid, [out, retval] VARIANT_BOOL *pVal);
+		[id(34), helpstring("method ShowVideoConfigureDialog")] HRESULT ShowVideoConfigureDialog([in] BSTR CodecGuid);
+		[id(35), helpstring("method ShowVideoAboutDialog")] HRESULT ShowVideoAboutDialog([in] BSTR CodecGuid);
+	};
+
+	[
+		uuid(C7C30D88-7A72-4C2D-9ABC-110F1FBAF103),
+		helpstring("_IVEditObj3Events Interface")
+	]
+	dispinterface _IVEditObj3Events
+	{
+		properties:
+		methods:
+		[id(1), helpstring("method Complete")] HRESULT Complete();
+		[id(2), helpstring("method AboutToRun")] HRESULT AboutToRun();
+		[id(3), helpstring("method Click")] HRESULT Click();
+		[id(4), helpstring("method DblClick")] HRESULT DblClick();
+		[id(5), helpstring("method KeyUp")] HRESULT KeyUp();
+		[id(6), helpstring("method MouseUp")] HRESULT MouseUp();
+		[id(7), helpstring("method PosChange")] HRESULT PosChange([in] double NewPos);
+		[id(8), helpstring("method EffectListed")] HRESULT EffectListed([in] BSTR strName, [in] BSTR strGuid);
+		[id(9), helpstring("method AviCodecListed")] HRESULT AviCodecListed([in] BSTR CodecName, [in] BSTR CodecGuid, [in] MediaType  CodecType);
+		[id(10), helpstring("method WMVProfileListed")] HRESULT WMVProfileListed([in] int Index, [in] BSTR ProfileName, [in] BSTR ProfileDescription);
+		[id(11), helpstring("method SaveProgress")] HRESULT SaveProgress([in] double dCurrent, [in] double dMax);
+		[id(12), helpstring("method SaveComplete")] HRESULT SaveComplete();
+
+	};
+
+	[
+		uuid(94D04290-8D29-4064-86DC-642CDCA7B335),
+		helpstring("VEditObj3 Class")
+	]
+	coclass VEditObj3
+	{
+		[default] interface IVEditObj3;
+		[default, source] dispinterface _IVEditObj3Events;
+	};
+};

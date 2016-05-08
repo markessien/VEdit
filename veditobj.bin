@@ -1,0 +1,34 @@
+HKCR
+{
+	VEdit.VEditObj.1 = s 'VEditObj Class'
+	{
+		CLSID = s '{4A7EF81A-5EA5-474F-AC64-31C8195B7ABC}'
+	}
+	VEdit.VEditObj = s 'VEditObj Class'
+	{
+		CLSID = s '{4A7EF81A-5EA5-474F-AC64-31C8195B7ABC}'
+		CurVer = s 'VEdit.VEditObj.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {4A7EF81A-5EA5-474F-AC64-31C8195B7ABC} = s 'VEditObj Class'
+		{
+			ProgID = s 'VEdit.VEditObj.1'
+			VersionIndependentProgID = s 'VEdit.VEditObj'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ForceRemove 'Control'
+			ForceRemove 'Insertable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 101'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '131473'
+			}
+			'TypeLib' = s '{073B88D2-627E-4875-9972-892F0E594A3A}'
+			'Version' = s '1.0'
+		}
+	}
+}
